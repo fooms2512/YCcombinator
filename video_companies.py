@@ -20,12 +20,13 @@ def main():
     output_path = "/home/user/YCcombinator/video_companies.csv"
     with open(output_path, "w", newline="", encoding="utf-8") as f:
         writer = csv.writer(f)
-        writer.writerow(["#", "Company", "YC URL"])
+        writer.writerow(["#", "Company", "Batch", "YC URL"])
         for i, c in enumerate(companies_with_video, start=1):
             name = c.get("name", "")
             slug = c.get("slug", "")
+            batch = c.get("batch", "")
             yc_url = f"https://www.ycombinator.com/companies/{slug}"
-            writer.writerow([i, name, yc_url])
+            writer.writerow([i, name, batch, yc_url])
 
     print(f"CSV written to: {output_path}")
 
