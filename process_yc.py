@@ -81,6 +81,10 @@ def main():
         tags = c.get("tags", [])
         industries = c.get("industries", [])
         status = c.get("status", "")
+        stage = c.get("stage", "")
+        app_video_public = c.get("app_video_public", False)
+        demo_day_video_public = c.get("demo_day_video_public", False)
+        is_hiring = c.get("isHiring", False)
         website = c.get("website", "")
         one_liner = c.get("one_liner", "")
 
@@ -114,7 +118,11 @@ def main():
             "Business Type": business_type,
             "Team Size": team_size if team_size else "",
             "Size Range": size_label,
+            "Stage": stage,
             "Status": status,
+            "Is Hiring": "Yes" if is_hiring else "No",
+            "App Video Public": "Yes" if app_video_public else "No",
+            "Demo Day Video Public": "Yes" if demo_day_video_public else "No",
             "Website": website,
             "One Liner": one_liner,
             "Tags": "; ".join(tags),
@@ -125,7 +133,9 @@ def main():
     fieldnames = [
         "Company Name", "Batch", "Location", "City", "Country",
         "Industry", "Sub-Industry", "Business Type",
-        "Team Size", "Size Range", "Status", "Website", "One Liner", "Tags"
+        "Team Size", "Size Range", "Stage", "Status", "Is Hiring",
+        "App Video Public", "Demo Day Video Public",
+        "Website", "One Liner", "Tags"
     ]
     with open(output_path, "w", newline="", encoding="utf-8") as f:
         writer = csv.DictWriter(f, fieldnames=fieldnames)
